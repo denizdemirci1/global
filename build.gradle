@@ -1,0 +1,25 @@
+import com.deniz.global.Libs
+
+buildscript {
+  repositories {
+    google()
+    jcenter()
+  }
+  dependencies {
+    classpath Libs.androidGradlePlugin
+    classpath Libs.Kotlin.gradlePlugin
+    classpath Libs.DaggerHilt.daggerHiltGradlePlugin
+    classpath Libs.Navigation.safeArgs
+  }
+}
+
+allprojects {
+  repositories {
+    google()
+    jcenter()
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}

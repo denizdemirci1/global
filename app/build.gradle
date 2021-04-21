@@ -1,0 +1,90 @@
+import com.deniz.global.Config
+import com.deniz.global.Libs
+
+plugins {
+  id 'com.android.application'
+  id 'kotlin-android'
+  id 'kotlin-parcelize'
+  id 'kotlin-kapt'
+  id 'dagger.hilt.android.plugin'
+  id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+  compileSdkVersion Config.compileSdkVersion
+  buildToolsVersion Config.buildToolsVersion
+
+  defaultConfig {
+    applicationId Config.applicationName
+    minSdkVersion Config.minSdkVersion
+    targetSdkVersion Config.targetSdkVersion
+    versionCode Config.versionCode
+    versionName Config.versionName
+
+    testInstrumentationRunner "com.deniz.global.util.CustomTestRunner"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
+  }
+
+  android.viewBinding.enabled true
+}
+
+dependencies {
+
+  implementation Libs.Kotlin.stdlib
+  implementation Libs.material
+  implementation Libs.AndroidX.coreKtx
+  implementation Libs.AndroidX.appCompat
+
+  implementation Libs.Navigation.navigationFragmentKtx
+  implementation Libs.Navigation.navigationUiKtx
+
+  implementation Libs.Coroutines.android
+  implementation Libs.Coroutines.core
+
+  implementation Libs.DaggerHilt.daggerHilt
+  kapt Libs.DaggerHilt.daggerHiltCompiler
+
+  implementation Libs.Network.retrofit
+  implementation Libs.Network.converter
+  implementation Libs.Network.okhttp
+  implementation Libs.Network.interceptor
+
+  testImplementation Libs.UnitTest.junit
+  testImplementation Libs.UnitTest.mockk
+  testImplementation Libs.UnitTest.truth
+  testImplementation Libs.UnitTest.coroutinesTest
+  testImplementation Libs.UnitTest.coreTest
+
+  androidTestImplementation Libs.AndroidTest.junit
+  androidTestImplementation Libs.AndroidTest.espresso
+  androidTestImplementation Libs.AndroidTest.espressoContrib
+  androidTestImplementation Libs.AndroidTest.hilt
+  kaptAndroidTest Libs.AndroidTest.hiltCompiler
+  androidTestImplementation Libs.AndroidTest.fragmentTesting
+  androidTestImplementation Libs.AndroidTest.testCore
+  androidTestImplementation Libs.AndroidTest.mockk
+
+  debugImplementation Libs.AndroidTest.fragmentTesting
+  debugImplementation Libs.AndroidTest.testCore
+}

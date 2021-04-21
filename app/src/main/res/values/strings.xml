@@ -1,0 +1,9 @@
+<resources>
+  <string name="app_name">global</string>
+
+  <string name="click_to_get_response_code">click_to_get_response_code</string>
+  <string name="response_code">response code:</string>
+  <string name="times_fetched">times fetched:</string>
+  <string name="button_text">fetch</string>
+
+</resources>
