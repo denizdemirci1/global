@@ -57,7 +57,7 @@ class SplashFragmentTest {
     }
 
     @Test
-    fun clickOnPlaylistLayout_shouldOpenPlaylistFragment() {
+    fun when_OnSuccess_is_called__navigate_is_called_on_navController() {
         val nextResponse = NextResponse("path")
         splashFragment.onSuccess(nextResponse)
 
